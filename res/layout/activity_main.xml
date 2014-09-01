@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+   <LinearLayout
+    android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/b_p0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+	    android:background="@android:color/holo_blue_light"
+        android:drawable="@color/red"
+        android:text="@string/player_0" />
+
+    <Button
+        android:background="@android:color/holo_red_light"
+        android:id="@+id/b_p1"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/player_1" />
+
+    <Button
+            android:background="@android:color/holo_orange_light"
+        android:id="@+id/b_p2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/player_2" />
+
+    <Button
+            android:background="@android:color/holo_purple"
+        android:id="@+id/b_p3"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/player_3" />
+
+    </LinearLayout>
+
+    <Button
+       android:background="@android:color/holo_green_light"
+         android:id="@+id/b_edit_ps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:onClick="editPlayers"
+        android:text="@string/edit_players" />
+ 
+</LinearLayout>
