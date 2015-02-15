@@ -1,0 +1,261 @@
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.scorekeeper.EnterPlayers" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+         <TextView
+             android:id="@+id/aec_tv_course_name"
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:background="@android:color/holo_blue_bright"
+             android:ems="10"
+             android:text="Course"
+             android:textColorLink="@android:color/holo_blue_light" />
+        
+        <EditText
+            android:id="@+id/aec_et_course_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="85.19"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:imeOptions="actionNone"
+            android:inputType="textCapWords|textAutoCorrect"
+            android:selectAllOnFocus="true"
+            android:text="@string/zero" />
+        </LinearLayout>
+        
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/aec_tv_fixedText1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:ems="10"
+            android:text="Blue"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/aec_et_blue_dist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:imeOptions="actionNone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="@string/zero" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:id="@+id/aec_tv_fixedText0"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:text="White"
+            android:textColorLink="@android:color/holo_blue_light" />
+        
+        <EditText
+            android:id="@+id/aec_et_white_dist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="85.19"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:imeOptions="actionNone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="@string/zero" 
+            />
+	<requestFocus />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/aec_tv_fixedText2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:ems="10"
+            android:text="Red" />
+
+        <EditText
+            android:id="@+id/aec_et_red_dist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:imeOptions="actionNone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="@string/zero" />
+          
+    </LinearLayout>
+
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/aec_tv_fixedText4"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/Yellow"
+            android:ems="10"
+            android:text="Hcp" />
+    
+        <EditText
+            android:id="@+id/aec_et_hcp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:imeOptions="actionNone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="@string/zero" />
+
+    </LinearLayout>
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/aet_tv_fixedText3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_dark"
+            android:ems="10"
+            android:text="Par" />
+    
+        <EditText
+            android:id="@+id/aec_et_par"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:imeOptions="actionNone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="@string/zero" />
+
+    </LinearLayout>
+
+
+  <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:gravity="center_vertical|center_horizontal"
+       android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/aec_b_prevhole"
+        style="?android:attr/buttonBarStyle"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="decr_current_hole"
+        android:text="@string/prevhole" />
+	/>
+    
+    <Button
+        android:id="@+id/aec_b_nexthole"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/darker_gray"
+        android:onClick="incr_current_hole"
+        android:text="@string/nexthole"
+        android:textColor="@android:color/white" />
+
+   <Button
+       android:id="@+id/aec_b_current_hole"
+       style="?android:attr/buttonBarStyle"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="1"
+       android:background="@android:color/black"
+       android:text="@string/prevhole"
+       android:textColor="@android:color/white" />
+
+	/>
+    </LinearLayout>
+  <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:gravity="center_vertical|center_horizontal"
+       android:orientation="horizontal" >
+
+    <Button
+        style="?android:attr/buttonBarStyle"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:id="@+id/aec_b_save"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="ui_save"
+        android:text="@string/save" />
+	/>
+    
+    <Button
+        style="?android:attr/buttonBarStyle"
+	android:background="@android:color/darker_gray"
+        android:textColor="@android:color/white"
+        android:id="@+id/aec_b_undo"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="ui_undo"
+        android:text="@string/undo" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/aec_b_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:onClick="Done"
+        android:text="@string/done" />
+ </LinearLayout>

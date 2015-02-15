@@ -1,57 +1,189 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="${relativePackage}.${activityClass}" >
+	      xmlns:tools="http://schemas.android.com/tools"
+	      android:layout_width="match_parent"
+	      android:layout_height="match_parent"
+	      android:layout_gravity="center_vertical|center_horizontal"
+	      android:orientation="vertical"
+	      tools:context="${relativePackage}.${activityClass}" >
+  
 
-   <LinearLayout
-    android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:gravity="center_vertical|center_horizontal"
+      android:orientation="vertical" >
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:background="@color/black"
+      android:gravity="center_vertical|center_horizontal"
+      android:orientation="horizontal" >
+    
     <Button
-        android:id="@+id/b_p0"
+        style="?android:attr/buttonBarStyle"
+	android:background="@android:color/holo_blue_light"
+        android:id="@+id/am_b_p0"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_weight="1"
-	    android:background="@android:color/holo_blue_light"
-        android:drawable="@color/red"
+        android:layout_height="wrap_content"
+        android:onClick="updateScore_p0"
         android:text="@string/player_0" />
 
     <Button
+        style="?android:attr/buttonBarStyle"
         android:background="@android:color/holo_red_light"
-        android:id="@+id/b_p1"
+        android:id="@+id/am_b_p1"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:onClick="updateScore_p1"
         android:text="@string/player_1" />
 
     <Button
+        style="?android:attr/buttonBarStyle"
             android:background="@android:color/holo_orange_light"
-        android:id="@+id/b_p2"
+        android:id="@+id/am_b_p2"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:onClick="updateScore_p2"
         android:text="@string/player_2" />
 
     <Button
+        style="?android:attr/buttonBarStyle"
             android:background="@android:color/holo_purple"
-        android:id="@+id/b_p3"
+        android:id="@+id/am_b_p3"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:onClick="updateScore_p3"
         android:text="@string/player_3" />
 
+ 
     </LinearLayout>
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:background="@color/black"
+      android:gravity="center_vertical|center_horizontal"
+      android:orientation="horizontal" >
+
     <Button
-       android:background="@android:color/holo_green_light"
-         android:id="@+id/b_edit_ps"
-        android:layout_width="wrap_content"
+        style="?android:attr/buttonBarStyle"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
+        android:id="@+id/am_b_prevhole"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:onClick="editPlayers"
-        android:text="@string/edit_players" />
+        android:onClick="decr_current_hole"
+        android:text="@string/prevhole" />
+	/>
+    
+    <Button
+        style="?android:attr/buttonBarStyle"
+	android:background="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:id="@+id/am_b_nexthole"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="incr_current_hole"
+        android:text="@string/nexthole" />
+
+   <Button
+       android:id="@+id/am_b_current_hole"
+       style="?android:attr/buttonBarStyle"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="1"
+       android:background="@android:color/white"
+       android:onClick="editCourse"
+       android:text="@string/prevhole"
+       android:textColor="@android:color/black" />
+
+	/>
+    </LinearLayout>
+    </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1"
+         android:background="@color/black"
+         android:gravity="center_vertical|center_horizontal"
+         android:orientation="vertical" >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:gravity="center_vertical|center_horizontal"
+       android:orientation="vertical" >
+     <Button
+         android:id="@+id/am_b_edit_players"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_vertical|center_horizontal"
+         android:background="@android:color/holo_green_light"
+         android:onClick="editPlayers"
+         android:text="@string/edit_players" />
+     </LinearLayout>
+     
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:gravity="center_vertical|center_horizontal"
+       android:orientation="vertical" >
+    <Button
+        android:id="@+id/am_b_select_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@android:color/holo_green_light"
+         android:onClick="selectCourse"
+        android:text="@string/select_course" />
+     </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:gravity="center_vertical|center_horizontal"
+       android:orientation="vertical" >
+     <Button
+         android:id="@+id/am_b_enter_all_scores"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_vertical|center_horizontal"
+         android:background="@android:color/holo_green_light"
+         android:onClick="enterAllScores"
+         android:text="@string/title_activity_enter_all_scores" />
+     </LinearLayout>
+     
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1"
+         android:gravity="center_vertical|center_horizontal"
+         android:orientation="vertical" >
+    
+    <Button
+        android:id="@+id/am_b_start_match"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@android:color/holo_green_light"
+        android:onClick="scoreCard"
+        android:text="@string/start_match" />
+
+            </LinearLayout>
+            </LinearLayout>
  
 </LinearLayout>

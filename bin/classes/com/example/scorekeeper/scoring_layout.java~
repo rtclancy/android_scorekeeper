@@ -1,0 +1,52 @@
+package com.example.scorekeeper;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.FrameLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.HorizontalScrollView;
+
+public class scoring_layout extends Activity { 
+  HorizontalScrollView my_sv;
+  HorizontalScrollView.LayoutParams sv_parameters;
+  TableLayout.LayoutParams layout_parameters;
+  TableLayout layout;
+  TableRow[] header_row;
+  TableRow course_row;
+  TableRow.LayoutParams header_row_lp;
+  TextView[][] header_cells;
+  TextView tv_course_name;
+  public Button b_done;
+  int header_row_width;
+  scorekeeper_data msd;
+ //    enum e_row {hole,par,hcp};
+  
+  
+  final int hole_row=0;
+  final int blue_row=1;
+  final int white_row=2;
+  final int red_row=3;
+  final int par_row=4;
+  final int hcp_row=5;
+  final int p1_row=6;
+  final int p2_row=7;
+  final int p3_row=8;
+  final int p4_row=9;
+  //done row is 10
+//  course_row = new TableRow(context);
+  //		header_row[row].setBackgroundColor(Color.RED);
+//  header_row_lp = new TableRow.LayoutParams();
+  header_row_lp.width =TableRow.LayoutParams.MATCH_PARENT;
+  header_row_lp.height =TableRow.LayoutParams.MATCH_PARENT;
+  //	header_row_lp.span=1;
+  course_row.setLayoutParams(header_row_lp);
+  tv_course_name = new TextView();
+  tv_course_name=msd.current_course;
+  course_row.addView(course_name);
+  
+}

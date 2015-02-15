@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -23,12 +24,15 @@
             android:text="@string/player_0" />
         
         <EditText
-            android:id="@+id/editText0"
+            android:id="@+id/aep_et_0"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="85.19"
+            android:background="@android:color/white"
             android:ems="10"
-            android:text="@string/player_0"
-            android:layout_width="0dp" />
+            android:selectAllOnFocus="true"
+            android:text="@string/player_0" />
+
         </LinearLayout>
 
     <LinearLayout
@@ -45,12 +49,15 @@
             android:text="@string/player_1" />
 
         <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
+            android:id="@+id/aep_et_1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
+            android:background="@android:color/white"
             android:ems="10"
+            android:selectAllOnFocus="true"
             android:text="@string/player_1" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -67,11 +74,13 @@
             android:text="@string/player_2" />
 
         <EditText
-            android:id="@+id/editText2"
-            android:layout_width="wrap_content"
+            android:id="@+id/aep_et_2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
+            android:background="@android:color/white"
             android:ems="10"
+            android:selectAllOnFocus="true"
             android:text="@string/player_2" />
           
     </LinearLayout>
@@ -90,16 +99,19 @@
             android:text="@string/player_3" />
     
         <EditText
-            android:id="@+id/editText3"
-            android:layout_width="wrap_content"
+            android:id="@+id/aep_et_3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
+            android:background="@android:color/white"
             android:ems="10"
+            android:selectAllOnFocus="true"
             android:text="@string/player_3" />
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/aep_b_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_green_light"

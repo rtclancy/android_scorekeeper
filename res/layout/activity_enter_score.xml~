@@ -1,0 +1,200 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.scorekeeper.EnterScore" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    <TextView
+        android:id="@+id/aes_tv_player1a"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="PLAYER:" />
+    <TextView
+        android:id="@+id/aes_tv_player1b"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/player_0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/aes_tv_strokes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="@string/strokes"
+            android:textColor="@android:color/white" />
+ 
+        <EditText
+            android:id="@+id/aes_et_strokes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="number"
+            android:onClick="selectAll"
+            android:selectAllOnFocus="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/aes_tv_distance_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="@string/distance_in"
+            android:textColor="@android:color/white" />
+ 
+        <EditText
+            android:id="@+id/aes_et_distance_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="number"
+            android:onClick="selectAll"
+            android:selectAllOnFocus="true" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/aes_tv_driving_distancea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="@string/driving_distance"
+            android:textColor="@android:color/white" />
+ 
+        <TextView
+            android:id="@+id/aes_tv_driving_distanceb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:textColor="@android:color/white" />
+           />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+         android:orientation="vertical" >
+
+        <CheckBox
+            android:id="@+id/aes_cb_fwy_hit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fairway Hit?"
+            android:textSize="12.5sp"
+            android:textColor="@android:color/black" />
+
+        <CheckBox
+            android:id="@+id/aes_cb_gir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green In Regulation?"
+            android:textSize="12.5sp"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+     <Button
+        style="?android:attr/buttonBarStyle"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
+        android:id="@+id/aes_b_prevhole"
+        android:textSize="12.5sp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="decr_current_hole"
+        android:text="@string/prevhole" />
+	/>
+    
+    <Button
+        style="?android:attr/buttonBarStyle"
+	android:background="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:id="@+id/aes_b_nexthole"
+        android:textSize="12.5sp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="incr_current_hole"
+        android:text="@string/nexthole" />
+
+   <Button
+       android:id="@+id/aes_b_current_hole"
+       style="?android:attr/buttonBarStyle"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:textSize="12.5sp"
+       android:layout_weight="1"
+       android:background="@android:color/white"
+       android:onClick="editCourse"
+       android:text="@string/prevhole"
+       android:textColor="@android:color/black" />
+   </LinearLayout>
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/aes_b_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:onClick="Done"
+        android:textSize="12.5sp"
+        android:text="@string/done" />
+
+    <Button
+        android:id="@+id/aes_b_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:onClick="Save"
+        android:textSize="12.5sp"
+        android:text="@string/save" />
+   </LinearLayout>
+</LinearLayout>

@@ -6,27 +6,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.EditText;
 
 public class EnterPlayers extends Activity {
-	scorekeeper_data my_scorekeeper_data;
+	scorekeeper_data msd;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		EditText my_view;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_enter_players);
-		my_scorekeeper_data=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
-		my_view=(EditText)findViewById(R.id.editText0);
-		my_view.setText(my_scorekeeper_data.players[0]);
-		my_view=(EditText)findViewById(R.id.editText1);
-		my_view.setText(my_scorekeeper_data.players[1]);
-		my_view=(EditText)findViewById(R.id.editText2);
-		my_view.setText(my_scorekeeper_data.players[2]);
-		my_view=(EditText)findViewById(R.id.editText3);
-		my_view.setText(my_scorekeeper_data.players[3]);
+		msd=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
+
+		my_view=(EditText)findViewById(R.id.aep_et_0);
+		my_view.setText(msd.players[0]);
+		//		my_view.setBackgroundColor(this.getResources().getColor(msd.color[0]));
+
+		my_view=(EditText)findViewById(R.id.aep_et_1);
+		my_view.setText(msd.players[1]);
+		//		my_view.setBackgroundColor(this.getResources().getColor(msd.color[1]));
+										  
+		my_view=(EditText)findViewById(R.id.aep_et_2);			  
+		my_view.setText(msd.players[2]);		  
+		//		my_view.setBackgroundColor(this.getResources().getColor(msd.color[2]));
+										  
+		my_view=(EditText)findViewById(R.id.aep_et_3);			  
+		my_view.setText(msd.players[3]);		  
+		//		my_view.setBackgroundColor(this.getResources().getColor(msd.color[3]));
 }
 
 	@Override
@@ -51,23 +57,29 @@ public class EnterPlayers extends Activity {
     {
 		EditText my_view;
 		CharSequence text_cs;
-		my_view=(EditText)findViewById(R.id.editText0);
+		my_view=(EditText)findViewById(R.id.aep_et_0);
 		text_cs=my_view.getText();
-		my_scorekeeper_data.players[0]=text_cs.toString();
-		my_view=(EditText)findViewById(R.id.editText1);
+		msd.players[0]=text_cs.toString();
+		my_view=(EditText)findViewById(R.id.aep_et_1);
 		text_cs=my_view.getText();
-		my_scorekeeper_data.players[1]=text_cs.toString();
-		my_view=(EditText)findViewById(R.id.editText2);
+		msd.players[1]=text_cs.toString();
+		my_view=(EditText)findViewById(R.id.aep_et_2);
 		text_cs=my_view.getText();
-		my_scorekeeper_data.players[2]=text_cs.toString();
-		my_view=(EditText)findViewById(R.id.editText3);
+		msd.players[2]=text_cs.toString();
+		my_view=(EditText)findViewById(R.id.aep_et_3);
 		text_cs=my_view.getText();
-		my_scorekeeper_data.players[3]=text_cs.toString();
+		msd.players[3]=text_cs.toString();
 
 		Intent intent = new Intent(this, MainActivity.class);
-    	intent.putExtra("myobj",my_scorekeeper_data);
+    	intent.putExtra("myobj",msd);
     	setResult(RESULT_OK, intent);
  		finish();
     }
+    protected void onStop()
+    {
+    	super.onStop();
+    //	Msd_common_methods.write_msd_file(this.msd.toBytes(),this);
+    }
 	
+ 
 }
