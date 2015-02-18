@@ -1,11 +1,13 @@
 package com.example.scorekeeper;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 
 import java.util.List;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -34,21 +36,25 @@ public class SelectCourse extends Activity {
     EditText my_et;
 	Toast toast;
 	Context context;
+
+    List<golf_course_front_end> values;
+    ArrayAdapter<golf_course_front_end> adapter;
+    ListView gc_list;
+
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_select_course);
 	msd=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
-	my_et = (EditText)findViewById(R.id.asc_confirm_code);
-	my_et.setText(Integer.toString(0));
+	//	my_et = (EditText)findViewById(R.id.asc_confirm_code);
+	//	my_et.setText(Integer.toString(0));
 	datasource = new golf_course_db_dao(this);
 	datasource.open();
-	List<golf_course_front_end> values = datasource.getAllGCs();
+	values.addAll(datasource.getAllGCs());
 	
-	ArrayAdapter<golf_course_front_end> adapter = new ArrayAdapter<golf_course_front_end>(this,
-											      android.R.layout.simple_list_item_1, values);
-	final ListView gc_list = (ListView)findViewById(R.id.list);
+	adapter = new ArrayAdapter<golf_course_front_end>(this,android.R.layout.simple_list_item_1, values);
+	gc_list = (ListView)findViewById(R.id.list);
 	gc_list.setAdapter(adapter);
 	my_tv=(TextView)findViewById(R.id.asc_current_course);
 	my_tv.setText("Current Course: "+msd.current_course);
@@ -57,51 +63,11 @@ public class SelectCourse extends Activity {
 	      public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
 //	        String selectedFromList =(String) (gc_list.getItemAtPosition(myItemInt));
 		  msd.current_course=gc_list.getItemAtPosition(myItemInt).toString();
+		  msd.current_course=msd.current_course.replaceAll("\"",""); //RTC_TBD
 	    	my_tv=(TextView)findViewById(R.id.asc_current_course);
 	    	my_tv.setText("Current Course: "+msd.current_course);
 	      }                 
 	});
-	//	ScrollView sv = new ScrollView(this);
-	//	LinearLayout ll = new LinearLayout(this);
-	//	TextView tv = new TextView(this);
-	//	TextView tv1 = new TextView(this);
-	//
-	//	ll.setOrientation(LinearLayout.VERTICAL);
-	//	sv.addView(ll);
-	//	tv1.setText("Checking for course file");
-	//	if (!my_course_file.isFile())
-	//	    {
-	//		tv.setText("Course file does not exist. You need to create a course");
-	//		try {
-	//		    my_course_file.createNewFile();
-	//		}	
-	//		catch (IOException ioe) 
-	//		    {
-	//			ioe.printStackTrace();
-	//		    }
-	//	    }
-	//	else
-	//	    {
-	//		tv.setText("Course file exists.");
-	//	    }
-	//	ll.addView(tv1);
-	//	ll.addView(tv);
-	//	Button b_done = new Button(this);
-	//	//		b_done.setWidth(LayoutParams.WRAP_CONTENT);
-	//	b_done.setText("Done");
-	//	b_done.setBackgroundColor(this.getResources().getColor(android.R.color.holo_green_light));
-	//
-	//	ll.addView(b_done);
-	//	this.setContentView(sv);
-	//	b_done.setOnClickListener(new View.OnClickListener() {
-	//			
-	//		@Override
-	//		public void onClick(View v) {
-	//		    // TODO Auto-generated method stub
-	//		    Done(v);
-	//		}
-	//	    });
-	//		
     }
 
     @Override
@@ -133,50 +99,77 @@ public class SelectCourse extends Activity {
     public void Save(View view)
     {
     	context=getApplicationContext();
-    	my_et = (EditText)findViewById(R.id.asc_confirm_code);
-    	int tmp = Msd_common_methods.catch_parseInt(my_et.getText().toString());
-    	if (tmp == 1234)
-    	{
-    	ListView gc_list = (ListView)findViewById(R.id.list);
-	@SuppressWarnings("unchecked")
-	    ArrayAdapter<golf_course_front_end> adapter = (ArrayAdapter<golf_course_front_end>) gc_list.getAdapter();
-	golf_course_front_end golf_course = null;
-	// save the new comment to the database
 	
-	if (datasource.checkGCs(msd.current_course)==0)//(Boolean.TRUE) //
-	    {
-		golf_course = datasource.createGolfCourse(msd.current_course);
-		adapter.add(golf_course);
-		adapter.notifyDataSetChanged();
-	    }
-	datasource.add_golf_course_table(msd.current_course, msd.course);
-			toast = Toast.makeText(context, "Saved", Toast.LENGTH_SHORT);
-    	}
-    	else
-    	{
-     		toast = Toast.makeText(context, "Invalid Confirmation Code", Toast.LENGTH_SHORT);
-    	}
-		toast.show();
-		my_et.setText(Integer.toString(0));
-	       }
+	AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+	builder.setMessage("Are You Sure You Want To Save This Course? Old Course Data Of Same Name (if it exists) Will Be Overwritten!!!!")
+	    .setTitle("Save Course");
+
+	builder.setPositiveButton("Save Course", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int id) {
+		    save_course();
+		}
+	    });
+
+	builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int id) {
+		    // User cancelled the dialog
+		}
+	    });
+	
+	AlertDialog dialog = builder.create();
+	dialog.show();
+	
+    }
 
 
     public void Load(View view)
     {
     	context=getApplicationContext();
-    	my_et = (EditText)findViewById(R.id.asc_confirm_code);
-    	int tmp = Msd_common_methods.catch_parseInt(my_et.getText().toString());
-    	if (tmp == 1234)
-    	{
-		msd.course = datasource.get_golf_course_table(msd.current_course);
- 		toast = Toast.makeText(context, "Course Loaded", Toast.LENGTH_SHORT);
-    	}
-    	else
-    	{
-     		toast = Toast.makeText(context, "Invalid Confirmation Code", Toast.LENGTH_SHORT);	
-    	}
-		toast.show();
-		my_et.setText(Integer.toString(0));
+
+	AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+	builder.setMessage("Are You Sure You Want To Load This Course? Current Course Data Will Be Discarded And If Not Previously Saved Will Be Lost!!!!")
+	    .setTitle("Load Course");
+
+	builder.setPositiveButton("Load Course", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int id) {
+		    load_course();
+		}
+	    });
+
+	builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int id) {
+		    // User cancelled the dialog
+		}
+	    });
+
+	AlertDialog dialog = builder.create();
+	dialog.show();
+	
+    }
+
+    public void Delete(View view)
+    {
+    	context=getApplicationContext();
+
+	AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+	builder.setMessage("Are You Sure You Want To Delete This Course?")
+	    .setTitle("Delete Course");
+
+	builder.setPositiveButton("Delete Course", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int id) {
+		    delete_course();
+		}
+	    });
+
+	builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int id) {
+		    // User cancelled the dialog
+		}
+	    });
+
+	AlertDialog dialog = builder.create();
+	dialog.show();
+	
     }
 
     @Override
@@ -191,4 +184,53 @@ public class SelectCourse extends Activity {
 	super.onPause();
     }
     
+
+    public void save_course ()
+    {
+	golf_course_front_end golf_course = null;
+	
+	if (datasource.checkGCs(msd.current_course)==0)//(Boolean.TRUE) //
+	    {
+		golf_course = datasource.createGolfCourse(msd.current_course);
+		values.add(golf_course);
+		adapter.notifyDataSetChanged();
+	    }
+	datasource.add_golf_course_table(msd.current_course, msd.course);
+	toast = Toast.makeText(context, "Saved", Toast.LENGTH_SHORT);
+	toast.show();
+    }
+    
+    public void load_course()
+    {
+	msd.course = datasource.get_golf_course_table(msd.current_course);
+	toast = Toast.makeText(context, "Course Loaded", Toast.LENGTH_SHORT);
+	toast.show();
+    }
+
+   public void delete_course()
+    {
+	   golf_course_front_end my_golf_course;
+	   my_golf_course=datasource.getGC(msd.current_course);
+	if (datasource.checkGCs(msd.current_course)!=0)//(Boolean.TRUE) //
+	    {
+		if (values.remove(datasource.getGC(msd.current_course)))
+		    {
+			toast = Toast.makeText(context, "Found and Deleted", Toast.LENGTH_SHORT);
+		    }
+		else
+		    {
+			toast = Toast.makeText(context, "Not Found and Deleted", Toast.LENGTH_SHORT);
+		    }
+
+		datasource.delete_golf_course_table(msd.current_course);
+		datasource.deleteGolfCourse(msd.current_course);
+	//	values = datasource.getAllGCs();
+		adapter.notifyDataSetChanged();
+	    }
+	else 
+	    {
+		toast = Toast.makeText(context, "Course Not Found", Toast.LENGTH_SHORT);
+	    }
+	toast.show();
+    }
 }

@@ -178,35 +178,7 @@ public class scoring_layout extends Activity {
 	header_cells[hole_row][24].setText("     ADJ");
 	
 	header_cells[p1_row][ 0].setText(this.msd.players[0]);
-	for (int player=0;player<4;player++)
-	    {
-		int irow=0,out=0,in=0;
-		switch (player)
-		    {
-		    case 0: {irow=p1_row;break;}
-		    case 1: {irow=p2_row;break;}
-		    case 2: {irow=p3_row;break;}
-		    case 3: {irow=p4_row;break;}
-		    }
-		header_cells[irow][ 0].setText(this.msd.players[player]);
-		for (cell=1;cell<10;cell++)
-		    {
-			header_cells[irow][cell].setText(Integer.toString(msd.score[player][cell-1]));
-			out+=msd.score[player][cell-1];
-		    }
-		header_cells[irow][10].setText(Integer.toString(out)); //out total
-		for (cell=11;cell<20;cell++)
-		    {
-			header_cells[irow][cell].setText(Integer.toString(msd.score[player][cell-2]));
-			in+=msd.score[player][cell-2];
-		    }
-		header_cells[irow][20].setText(Integer.toString(in)); //in total
-		header_cells[irow][21].setText(Integer.toString(in+out)); //in total
-
-		header_cells[irow][22].setText("   ");
-		header_cells[irow][23].setText("   ");
-		header_cells[irow][24].setText("   ");
-	    }
+	update_scores();
 	{
 	    int tmp_hole=0;
 	    for (cell=0;cell<22;cell++)
@@ -312,4 +284,37 @@ public class scoring_layout extends Activity {
     //    	finish();
     //      }
     //
+
+    public void update_scores ()
+    {
+	for (int player=0;player<4;player++)
+	    {
+		int irow=0,out=0,in=0;
+		switch (player)
+		    {
+		    case 0: {irow=p1_row;break;}
+		    case 1: {irow=p2_row;break;}
+		    case 2: {irow=p3_row;break;}
+		    case 3: {irow=p4_row;break;}
+		    }
+		header_cells[irow][ 0].setText(this.msd.players[player]);
+		for (int cell=1;cell<10;cell++)
+		    {
+			header_cells[irow][cell].setText(Integer.toString(msd.score[player][cell-1]));
+			out+=msd.score[player][cell-1];
+		    }
+		header_cells[irow][10].setText(Integer.toString(out)); //out total
+		for (int cell=11;cell<20;cell++)
+		    {
+			header_cells[irow][cell].setText(Integer.toString(msd.score[player][cell-2]));
+			in+=msd.score[player][cell-2];
+		    }
+		header_cells[irow][20].setText(Integer.toString(in)); //in total
+		header_cells[irow][21].setText(Integer.toString(in+out)); //in total
+
+		header_cells[irow][22].setText("   ");
+		header_cells[irow][23].setText("   ");
+		header_cells[irow][24].setText("   ");
+	    }
+    }
 }

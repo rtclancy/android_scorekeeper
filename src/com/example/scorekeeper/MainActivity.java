@@ -44,14 +44,14 @@ public class MainActivity extends Activity {
    	if (msd.current_hole<17)
    		msd.current_hole++;
 	my_button=(Button)findViewById(R.id.am_b_current_hole);
-	my_button.setText(Integer.toString(msd.current_hole+1));
+	my_button.setText("View/Edit\nHole:"+Integer.toString(msd.current_hole+1));
     }
     public void decr_current_hole(View view)
     {
       	if (msd.current_hole>0)
       		 	msd.current_hole--;
 	my_button=(Button)findViewById(R.id.am_b_current_hole);
-	my_button.setText(Integer.toString(msd.current_hole+1));
+	my_button.setText("View/Edit\nHole:"+Integer.toString(msd.current_hole+1));
     }
 
     public void editPlayers(View view)
@@ -133,14 +133,14 @@ public class MainActivity extends Activity {
 	    	if (request_code == Constants.UPDATE_SCORE_RC)
 		    {
     			msd=(scorekeeper_data) intent.getSerializableExtra("myobj");
-			if (msd.score[0][msd.current_hole]==1234) msd.resetAllScores();
+			//if (msd.score[0][msd.current_hole]==1234) msd.resetAllScores();
 			Msd_common_methods.write_msd_file(this.msd.toBytes(),this);
     			update_buttons();
 		    }
 	    	if (request_code == Constants.VIEW_SCORECARD_RC)
 	    	{
 	    		msd=(scorekeeper_data) intent.getSerializableExtra("myobj");
-				Msd_common_methods.write_msd_file(this.msd.toBytes(),this);
+			Msd_common_methods.write_msd_file(this.msd.toBytes(),this);
 	    	}
 	    }
 	//    	msd=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
@@ -157,7 +157,7 @@ public class MainActivity extends Activity {
 	my_button=(Button)findViewById(R.id.am_b_p3);
 	my_button.setText(msd.players[3]);
 	my_button=(Button)findViewById(R.id.am_b_current_hole);
-	my_button.setText(Integer.toString(msd.current_hole+1));
+	my_button.setText("View/Edit\nHole:"+Integer.toString(msd.current_hole+1));
     }
 
 }

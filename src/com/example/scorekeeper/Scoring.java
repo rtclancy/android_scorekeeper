@@ -17,7 +17,7 @@ public class Scoring extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		my_scorekeeper_data=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
-		scoring_layout scoring_layout = new scoring_layout(this,my_scorekeeper_data);
+		final scoring_layout scoring_layout = new scoring_layout(this,my_scorekeeper_data);
 		//setContentView(R.layout.activity_scoring);
 		//setContentView(scoring_layout.layout,scoring_layout.layout_parameters);
 		setContentView(scoring_layout.my_sv,scoring_layout.sv_parameters);
@@ -37,10 +37,11 @@ public class Scoring extends Activity {
 				AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 				builder.setMessage("Are You Sure You Want To Clear All Scores?")
 			       .setTitle("Clear Scores");
-				builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+				builder.setPositiveButton("Clear Scores", new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {
 			               // User clicked OK button
 							my_scorekeeper_data.resetAllScores();
+							scoring_layout.update_scores();
 							//Done(v);
 		//					scoring_layout.scoring_layout(my_scorekeeper_data);
 			           }

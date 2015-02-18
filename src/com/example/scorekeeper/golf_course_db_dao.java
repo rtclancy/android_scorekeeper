@@ -38,7 +38,7 @@ public class golf_course_db_dao {
 
     public golf_course_front_end createGolfCourse(String golf_course) {
 	ContentValues values = new ContentValues();
-	values.put(golf_course_db.COLUMN_GC, golf_course);
+	values.put(golf_course_db.COLUMN_GC, "\""+golf_course+"\""); //RTC_TBD
 	long insertId = database.insert(golf_course_db.TABLE_GCS, null,
 					values);
 	Cursor cursor = database.query(golf_course_db.TABLE_GCS,
@@ -50,7 +50,13 @@ public class golf_course_db_dao {
 	return newGolfCourse;
     }
 
-    private golf_course_front_end cursorToGolfCourse(Cursor cursor) {
+    public void deleteGolfCourse(String golf_course) {
+    	String [] my_string = new String[1];
+	my_string[0]="\""+golf_course+"\"";
+	int tmp=database.delete(golf_course_db.TABLE_GCS, golf_course_db.COLUMN_GC + " = ?",my_string);
+    }
+
+    public golf_course_front_end cursorToGolfCourse(Cursor cursor) {
 	golf_course_front_end golf_course = new golf_course_front_end();
 	golf_course.setId(cursor.getLong(0));
 	golf_course.setGolfCourse(cursor.getString(1));
@@ -90,18 +96,37 @@ public class golf_course_db_dao {
 	return golf_courses;
     }
 
+    public golf_course_front_end getGC(String golf_course)
+    {
+	String [] my_string =new String[1];
+		  
+	my_string[0]="\""+golf_course+"\"";
+
+	Cursor cursor = database.query(golf_course_db.TABLE_GCS	,
+				       allColumns, golf_course_db.COLUMN_GC + " = ?", my_string, null, null, null);
+	cursor.moveToFirst();
+	return cursorToGolfCourse(cursor);
+    }
+
     public int checkGCs(String golf_course) {
 	String [] my_string =new String[1];
 		  
-	my_string[0]=golf_course;
+	my_string[0]="\""+golf_course+"\"";
 		 
 	Cursor cursor = database.query(golf_course_db.TABLE_GCS	,
 				       allColumns, golf_course_db.COLUMN_GC + " = ?", my_string, null, null, null);
 	return cursor.getCount();
     }
 
+    public void delete_golf_course_table (String golf_course)
+    {
+	golf_course="\""+golf_course+"\""; //RTC_TBD
+	database.execSQL("drop table if exists "+golf_course+";"); //delete all existing entries
+    }
+
     public void add_golf_course_table (String golf_course, int[][] course_details)
     {
+	golf_course="\""+golf_course+"\""; //RTC_TBD
 
 	try {
 	database.execSQL("create table "+golf_course+ "(" + "_id integer primary key autoincrement," + 
@@ -128,9 +153,8 @@ public class golf_course_db_dao {
     }
     public int [][] get_golf_course_table (String golf_course)
     {
-	String [] my_string =new String[1];
 	int [][] tmp = new int[5][18];
-	my_string[0]=golf_course;
+	golf_course="\""+golf_course+"\""; //RTC_TBD
 
 	Cursor cursor = database.query(golf_course,golf_course_columns, null,null,null,null,null);
 	tmp[0][0]=cursor.getCount();

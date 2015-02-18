@@ -26,7 +26,7 @@ public class golf_course_front_end {
 	  }
 
 	  public void setGolfCourse(String golf_course) {
-	    this.golf_course = golf_course;
+	      this.golf_course = golf_course.replaceAll("\"",""); //RTC_TBD
 	  }
 
 	  // Will be used by the ArrayAdapter in the ListView
