@@ -147,6 +147,19 @@ public class EnterScore extends Activity {
 	my_button=(Button)findViewById(R.id.aes_b_current_hole);
 	my_button.setText(Integer.toString(msd.current_hole+1));
     }
+    
+    @Override
+    public void onBackPressed() {
+    	Done();
+}
+    
+    public void Done()
+    {
+    	Intent intent = new Intent(this, MainActivity.class);
+    	intent.putExtra("myobj",msd);
+    	setResult(RESULT_OK, intent);
+    	finish();
+    }
     public void Done(View view)
     {
 	Save(view);
@@ -168,11 +181,8 @@ public class EnterScore extends Activity {
 	//	text_cs=my_view.getText();
 	//	msd.players[3]=text_cs.toString();
 	//	
-	Intent intent = new Intent(this, MainActivity.class);
-	intent.putExtra("myobj",msd);
-	setResult(RESULT_OK, intent);
-	finish();
-    }
+	Done();
+   }
     public void Save(View view)
     {
 	Context context = getApplicationContext();

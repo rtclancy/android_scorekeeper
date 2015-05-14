@@ -3,6 +3,7 @@ package com.example.scorekeeper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,15 @@ public class EnterAllScores extends Activity {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_enter_all_scores);
 	msd=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
+	
+	my_button=(Button)findViewById(R.id.aeas_b_prevhole);
+	my_button.setBackgroundColor(Color.rgb(0xff, 0x00, 0xff));
+
+	my_button=(Button)findViewById(R.id.aeas_b_nexthole);
+	my_button.setBackgroundColor(Color.rgb(0xff, 0xff, 0x00));
+
+	my_button=(Button)findViewById(R.id.aeas_b_current_hole);
+	my_button.setBackgroundColor(Color.rgb(0x00, 0xff, 0xff));
 
 	ui_update_scores();
 	//next_listeners();
@@ -86,15 +96,25 @@ public class EnterAllScores extends Activity {
 	return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() 
+    {
+        Done();
+    }
+    
+    public void Done()
+    {
+    	Intent intent = new Intent(this, MainActivity.class);
+    	intent.putExtra("myobj",msd);
+    	setResult(RESULT_OK, intent);
+    	finish();
+	
+    }
     
     public void Done(View view)
     {
-	ui_store_scores();
-	
-	Intent intent = new Intent(this, MainActivity.class);
-	intent.putExtra("myobj",msd);
-	setResult(RESULT_OK, intent);
-	finish();
+    	ui_store_scores();
+    	Done();
     }
     
     public void ui_save_and_store_scores(View view)

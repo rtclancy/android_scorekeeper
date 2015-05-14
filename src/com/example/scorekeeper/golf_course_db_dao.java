@@ -2,6 +2,7 @@ package com.example.scorekeeper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,6 +15,8 @@ public class golf_course_db_dao {
     private String[] allColumns = { golf_course_db.COLUMN_ID,
 				    golf_course_db.COLUMN_GC };
     private String[] golf_course_columns = {"hole","par","hcp","blue","white","red"};
+
+    List<golf_course_front_end> golf_courses;// = new ArrayList<golf_course_front_end>();
 	
     golf_course_db dbHelper;
     /**
@@ -47,6 +50,7 @@ public class golf_course_db_dao {
 	cursor.moveToFirst();
 	golf_course_front_end newGolfCourse = cursorToGolfCourse(cursor);
 	cursor.close();
+	golf_courses.add(newGolfCourse);
 	return newGolfCourse;
     }
 
@@ -80,32 +84,45 @@ public class golf_course_db_dao {
     }
 
     public List<golf_course_front_end> getAllGCs() {
-	List<golf_course_front_end> golf_courses = new ArrayList<golf_course_front_end>();
-
-	Cursor cursor = database.query(golf_course_db.TABLE_GCS	,
-				       allColumns, null, null, null, null, null);
-
-	cursor.moveToFirst();
-	while (!cursor.isAfterLast()) {
-	    golf_course_front_end golf_course = cursorToGolfCourse(cursor);
-	    golf_courses.add(golf_course);
-	    cursor.moveToNext();
-	}
-	// make sure to close the cursor
-	cursor.close();
+	if (golf_courses == null)
+	    {
+		golf_courses = new ArrayList<golf_course_front_end>();
+		
+		Cursor cursor = database.query(golf_course_db.TABLE_GCS	,
+					       allColumns, null, null, null, null, null);
+		
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+		    golf_course_front_end golf_course = cursorToGolfCourse(cursor);
+		    golf_courses.add(golf_course);
+		    cursor.moveToNext();
+		}
+		// make sure to close the cursor
+		cursor.close();
+	    }
 	return golf_courses;
     }
 
     public golf_course_front_end getGC(String golf_course)
     {
-	String [] my_string =new String[1];
-		  
-	my_string[0]="\""+golf_course+"\"";
-
-	Cursor cursor = database.query(golf_course_db.TABLE_GCS	,
-				       allColumns, golf_course_db.COLUMN_GC + " = ?", my_string, null, null, null);
-	cursor.moveToFirst();
-	return cursorToGolfCourse(cursor);
+	golf_course_front_end my_gc_fe=null;
+	//String [] my_string =new String[1];
+	
+	//	my_string[0]="\""+golf_course+"\"";
+	
+	//Cursor cursor = database.query(golf_course_db.TABLE_GCS	,
+	//			       allColumns, golf_course_db.COLUMN_GC + " = ?", my_string, null, null, null);
+	//cursor.moveToFirst();
+	ListIterator<golf_course_front_end> itr = golf_courses.listIterator();
+	while (itr.hasNext())
+	    {
+		my_gc_fe = itr.next();
+		if (golf_course.equals(my_gc_fe.toString()))
+		    {
+			break;
+		    }
+	    }
+	return my_gc_fe;
     }
 
     public int checkGCs(String golf_course) {

@@ -51,7 +51,7 @@ public class SelectCourse extends Activity {
 	//	my_et.setText(Integer.toString(0));
 	datasource = new golf_course_db_dao(this);
 	datasource.open();
-	values.addAll(datasource.getAllGCs());
+	values=datasource.getAllGCs();
 	
 	adapter = new ArrayAdapter<golf_course_front_end>(this,android.R.layout.simple_list_item_1, values);
 	gc_list = (ListView)findViewById(R.id.list);
@@ -192,7 +192,7 @@ public class SelectCourse extends Activity {
 	if (datasource.checkGCs(msd.current_course)==0)//(Boolean.TRUE) //
 	    {
 		golf_course = datasource.createGolfCourse(msd.current_course);
-		values.add(golf_course);
+		//values.add(golf_course);
 		adapter.notifyDataSetChanged();
 	    }
 	datasource.add_golf_course_table(msd.current_course, msd.course);
@@ -213,19 +213,14 @@ public class SelectCourse extends Activity {
 	   my_golf_course=datasource.getGC(msd.current_course);
 	if (datasource.checkGCs(msd.current_course)!=0)//(Boolean.TRUE) //
 	    {
-		if (values.remove(datasource.getGC(msd.current_course)))
-		    {
-			toast = Toast.makeText(context, "Found and Deleted", Toast.LENGTH_SHORT);
-		    }
-		else
-		    {
-			toast = Toast.makeText(context, "Not Found and Deleted", Toast.LENGTH_SHORT);
-		    }
+		adapter.remove(datasource.getGC(msd.current_course));
+		    toast = Toast.makeText(context, "Found and Deleted", Toast.LENGTH_SHORT);
+		    
 
 		datasource.delete_golf_course_table(msd.current_course);
 		datasource.deleteGolfCourse(msd.current_course);
 	//	values = datasource.getAllGCs();
-		adapter.notifyDataSetChanged();
+	//	adapter.notifyDataSetChanged();
 	    }
 	else 
 	    {
