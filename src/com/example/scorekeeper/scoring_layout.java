@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.FrameLayout;
 import android.widget.TableRow;
@@ -16,6 +17,7 @@ public class scoring_layout extends Activity {
     HorizontalScrollView.LayoutParams sv_parameters;
     TableLayout.LayoutParams layout_parameters;
     TableLayout layout;
+    LinearLayout llayout;
     TableRow[] header_row;
     TableRow course_row;
     TableRow.LayoutParams header_row_lp;
@@ -71,13 +73,14 @@ public class scoring_layout extends Activity {
 	layout_parameters.height=TableLayout.LayoutParams.MATCH_PARENT;
 	layout_parameters.width=TableLayout.LayoutParams.MATCH_PARENT;
 	
+	llayout = new LinearLayout(context);
 	layout = new TableLayout(context);
 	layout.setLayoutParams(layout_parameters);
 	layout.setBackgroundColor(context.getResources().getColor(android.R.color.black));
 	layout.setStretchAllColumns(true);
 
-	header_row = new TableRow[11];
-	for (row=0;row<11;row++)
+	header_row = new TableRow[13];
+	for (row=0;row<13;row++)
 	    {
 		header_row[row] = new TableRow(context);
 		//		header_row[row].setBackgroundColor(Color.RED);
@@ -152,7 +155,8 @@ public class scoring_layout extends Activity {
 		    }
 	    }
 
-	header_cells[hole_row][ 0].setText("     Hole");
+	header_cells[hole_row][0].setGravity(Gravity.LEFT);
+	header_cells[hole_row][ 0].setText("Hole    ");
 	header_cells[hole_row][ 1].setText("       1");
 	header_cells[hole_row][ 2].setText("       2");
 	header_cells[hole_row][ 3].setText("       3");
@@ -186,7 +190,7 @@ public class scoring_layout extends Activity {
 		{
 		    switch (cell)
 			{
-			case 0:{header_cells[red_row][cell].setText("Red");break;}
+			case 0:{header_cells[red_row][cell].setGravity(Gravity.LEFT);header_cells[red_row][cell].setText("Red");break;}
 			case 10:{header_cells[red_row][cell].setText(Integer.toString(msd.course_totals_out(msd.COURSE_RED)));break;}	
 			case 20:{header_cells[red_row][cell].setText(Integer.toString(msd.course_totals_in(msd.COURSE_RED)));break;}
 			case 21:{header_cells[red_row][cell].setText(Integer.toString(msd.course_totals_out_in(msd.COURSE_RED)));break;}
@@ -199,7 +203,7 @@ public class scoring_layout extends Activity {
 		{
 		    switch (cell)
 			{
-			case 0:{header_cells[white_row][cell].setText("White");break;}
+			case 0:{header_cells[white_row][cell].setGravity(Gravity.LEFT);header_cells[white_row][cell].setText("White");break;}
 			case 10:{header_cells[white_row][cell].setText(Integer.toString(msd.course_totals_out(msd.COURSE_WHITE)));break;}	
 			case 20:{header_cells[white_row][cell].setText(Integer.toString(msd.course_totals_in(msd.COURSE_WHITE)));break;}
 			case 21:{header_cells[white_row][cell].setText(Integer.toString(msd.course_totals_out_in(msd.COURSE_WHITE)));break;}
@@ -211,7 +215,7 @@ public class scoring_layout extends Activity {
 		{
 		    switch (cell)
 			{
-			case 0:{header_cells[blue_row][cell].setText("Blue");break;}
+			case 0:{header_cells[blue_row][cell].setGravity(Gravity.LEFT);header_cells[blue_row][cell].setText("Blue");break;}
 			case 10:{header_cells[blue_row][cell].setText(Integer.toString(msd.course_totals_out(msd.COURSE_BLUE)));break;}	
 			case 20:{header_cells[blue_row][cell].setText(Integer.toString(msd.course_totals_in(msd.COURSE_BLUE)));break;}
 			case 21:{header_cells[blue_row][cell].setText(Integer.toString(msd.course_totals_out_in(msd.COURSE_BLUE)));break;}
@@ -223,7 +227,7 @@ public class scoring_layout extends Activity {
 		{
 		    switch (cell)
 			{
-			case 0:{header_cells[hcp_row][cell].setText("Hcp");break;}
+			case 0:{header_cells[hcp_row][cell].setGravity(Gravity.LEFT);header_cells[hcp_row][cell].setText("Hcp");break;}
 			case 10:
 			case 20:{header_cells[hcp_row][cell].setText("  ");break;}
 			default: {header_cells[hcp_row][cell].setText(Integer.toString(msd.course[msd.COURSE_HCP][tmp_hole]));tmp_hole++;break;}
@@ -234,7 +238,7 @@ public class scoring_layout extends Activity {
 		{
 		    switch (cell)
 			{
-			case 0:{header_cells[par_row][cell].setText("Par");break;}
+			case 0:{header_cells[par_row][cell].setGravity(Gravity.LEFT);header_cells[par_row][cell].setText("Par");break;}
 			case 10:{header_cells[par_row][cell].setText(Integer.toString(msd.course_totals_out(msd.COURSE_PAR)));break;}	
 			case 20:{header_cells[par_row][cell].setText(Integer.toString(msd.course_totals_in(msd.COURSE_PAR)));break;}
 			case 21:{header_cells[par_row][cell].setText(Integer.toString(msd.course_totals_out_in(msd.COURSE_PAR)));break;}
@@ -273,11 +277,14 @@ public class scoring_layout extends Activity {
 		layout.addView(header_row[row]);
 	    }
 	header_row[10].addView(b_done);
-	header_row[10].addView(b_clear_scores);
-	header_row[10].addView(b_email);
+	header_row[11].addView(b_clear_scores);
+	header_row[12].addView(b_email);
 	
 	layout.addView(header_row[10]);
+	layout.addView(header_row[11]);
+	layout.addView(header_row[12]);
 	my_sv.addView(layout);
+	llayout.addView(my_sv);
     }
 
 
@@ -304,6 +311,7 @@ public class scoring_layout extends Activity {
 		    case 2: {irow=p3_row;break;}
 		    case 3: {irow=p4_row;break;}
 		    }
+		header_cells[irow][0].setGravity(Gravity.LEFT);
 		header_cells[irow][ 0].setText(this.msd.players[player]);
 		for (int cell=1;cell<10;cell++)
 		    {
