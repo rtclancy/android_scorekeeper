@@ -20,7 +20,7 @@ public class Scoring extends Activity {
 		final scoring_layout scoring_layout = new scoring_layout(this,my_scorekeeper_data);
 		//setContentView(R.layout.activity_scoring);
 		//setContentView(scoring_layout.layout,scoring_layout.layout_parameters);
-		setContentView(scoring_layout.my_sv,scoring_layout.sv_parameters);
+		setContentView(scoring_layout.llayout,scoring_layout.sv_parameters);
 		scoring_layout.b_done.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
