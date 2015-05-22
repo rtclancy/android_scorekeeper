@@ -1,8 +1,0 @@
-import  com.example.scorekeeper;
-
-class scorekeeper_test {
-    public static void main(String [ ] args)
-    {
-	scorekeeper_data msd = new scorekeeper_data();
-    }
-}
