@@ -7,24 +7,39 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EnterScore extends Activity {
     scorekeeper_data msd; //my scorekeeper data
 	TextView my_view;
+	Spinner my_spinner;
 	CheckBox my_cb;
 	Button my_button;
+	ArrayAdapter<CharSequence> adapter;
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_enter_score);
 	msd=(scorekeeper_data) getIntent().getSerializableExtra("myobj");
+	my_spinner=(Spinner)findViewById(R.id.sp_ts);
+	
+	adapter= new ArrayAdapter<CharSequence>(this,android.R.layout.simple_spinner_item);
+	for (int i=0;i<10;i++)
+	{
+		adapter.add(Msd_common_methods.possible_scores[i]);
+	}
+	my_spinner.setAdapter(adapter);
+	my_spinner.setSelection(msd.score[msd.current_player][msd.current_hole]);
 
+	
 	update_gui();
 
 //	my_view=(TextView)findViewById(R.id.as_player1f);
@@ -119,9 +134,12 @@ public class EnterScore extends Activity {
 //	my_view.setBackgroundColor(this.getResources().getColor(msd.color[msd.current_player]));
 //	my_view.setText(Integer.toString(msd.current_hole+1));
 
-	my_view=(TextView)findViewById(R.id.aes_et_strokes);
-	my_view.setText(Integer.toString(msd.score[msd.current_player][msd.current_hole]));
-
+//	my_view=(TextView)findViewById(R.id.aes_et_strokes);
+	my_spinner=(Spinner)findViewById(R.id.sp_ts);
+	my_spinner.setSelection(msd.score[msd.current_player][msd.current_hole]);
+	
+//	my_view.setText(Integer.toString(msd.score[msd.current_player][msd.current_hole]));
+	
 	my_view=(TextView)findViewById(R.id.aes_et_distance_in);
 	my_view.setText(Integer.toString(msd.distance_in[msd.current_player][msd.current_hole]));
 
@@ -190,8 +208,10 @@ public class EnterScore extends Activity {
 	toast.show();
 	EditText my_view;
 	CharSequence text_cs;
-	my_view=(EditText)findViewById(R.id.aes_et_strokes);
-	text_cs=my_view.getText();
+//	my_view=(EditText)findViewById(R.id.aes_et_strokes);
+	my_spinner=(Spinner)findViewById(R.id.sp_ts);
+//	text_cs=my_view.getText();
+	text_cs=my_spinner.getSelectedItem().toString();
 	msd.score[msd.current_player][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
 	my_view=(EditText)findViewById(R.id.aes_et_distance_in);
 	text_cs=my_view.getText();
@@ -203,8 +223,8 @@ public class EnterScore extends Activity {
     public void selectAll(View view)
     {
     	EditText my_et;
-    	my_et=(EditText)findViewById(R.id.aes_et_strokes);
-    	my_et.selectAll();
+//    	my_et=(EditText)findViewById(R.id.aes_et_strokes);
+//    	my_et.selectAll();
     }
 
    public void incr_current_hole(View view)

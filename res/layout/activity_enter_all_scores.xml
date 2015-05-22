@@ -23,18 +23,13 @@
             android:background="@android:color/holo_blue_light"
             android:ems="10"
             android:text="@string/player_0" />
-        
-        <EditText
-            android:id="@+id/aeas_et_0"
-            android:layout_width="0dp"
+
+        <Spinner
+            android:id="@+id/aeas_sp_0"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="85.19"
-            android:background="@android:color/white"
-            android:ems="10"
-            android:inputType="number"
-            android:onClick="selectAll_et0"
-            android:selectAllOnFocus="true"
-            android:text="@string/zero" />
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray" />
 
         </LinearLayout>
 
@@ -52,17 +47,12 @@
             android:ems="10"
             android:text="@string/player_1" />
 
-        <EditText
-            android:id="@+id/aeas_et_1"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/aeas_sp_1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="75"
-            android:background="@android:color/white"
-            android:ems="10"
-            android:inputType="number"
-            android:onClick="selectAll_et1"
-            android:selectAllOnFocus="true"
-            android:text="@string/zero" />
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray" />
 
     </LinearLayout>
 
@@ -80,17 +70,12 @@
             android:ems="10"
             android:text="@string/player_2" />
 
-        <EditText
-            android:id="@+id/aeas_et_2"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/aeas_sp_2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="75"
-            android:background="@android:color/white"
-            android:ems="10"
-            android:inputType="number"
-            android:onClick="selectAll_et2"
-            android:selectAllOnFocus="true"
-            android:text="@string/zero" />
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray" />
           
     </LinearLayout>
 
@@ -107,98 +92,84 @@
             android:background="@android:color/holo_purple"
             android:ems="10"
             android:text="@string/player_3" />
-    
-        <EditText
-            android:id="@+id/aeas_et_3"
+
+        <Spinner
+            android:id="@+id/aeas_sp_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/aeas_b_prevhole"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="75"
-            android:background="@android:color/white"
-            android:ems="10"
-            android:inputType="number"
-            android:onClick="selectAll_et3"
-            android:selectAllOnFocus="true"
-            android:text="@string/zero" />
+            android:layout_weight="1.05"
+            android:background="@android:color/holo_red_dark"
+            android:onClick="decr_current_hole"
+            android:text="@string/prevhole"
+            android:textColor="@android:color/black" />
 
+        <Button
+            android:id="@+id/aeas_b_nexthole"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.97"
+            android:background="@android:color/darker_gray"
+            android:onClick="incr_current_hole"
+            android:text="@string/nexthole"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/aeas_b_current_hole"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:text="@string/prevhole"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:background="@color/black"
-      android:gravity="center_vertical|center_horizontal"
-      android:orientation="horizontal" >
-
-    <Button
-        android:id="@+id/aeas_b_prevhole"
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/holo_red_dark"
-        android:onClick="decr_current_hole"
-        android:text="@string/prevhole"
-        android:textColor="@android:color/black" />
+        android:background="@color/black"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal" >
 
-	/>
-    
-    <Button
-        android:id="@+id/aeas_b_nexthole"
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/darker_gray"
-        android:onClick="incr_current_hole"
-        android:text="@string/nexthole"
-        android:textColor="@android:color/black" />
+        <Button
+            android:id="@+id/aeas_b_save"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:onClick="ui_save_and_store_scores"
+            android:text="@string/save"
+            android:textColor="@android:color/black" />
 
-   <Button
-       android:id="@+id/aeas_b_current_hole"
-       style="?android:attr/buttonBarStyle"
-       android:layout_width="0dp"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       android:background="@android:color/white"
-       android:text="@string/prevhole"
-       android:textColor="@android:color/black" />
-
-	/>
-    </LinearLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:background="@color/black"
-      android:gravity="center_vertical|center_horizontal"
-      android:orientation="horizontal" >
-
-    <Button
-        android:id="@+id/aeas_b_save"
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/holo_red_dark"
-        android:onClick="ui_save_and_store_scores"
-        android:text="@string/save"
-        android:textColor="@android:color/black" />
-
-	/>
-    
-    <Button
-        android:id="@+id/aeas_b_undo"
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/darker_gray"
-        android:onClick="ui_void_scores"
-        android:text="@string/undo"
-        android:textColor="@android:color/black" />
-
+        <Button
+            android:id="@+id/aeas_b_undo"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:onClick="ui_void_scores"
+            android:text="@string/undo"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <Button

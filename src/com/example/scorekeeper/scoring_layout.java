@@ -23,6 +23,7 @@ public class scoring_layout extends Activity {
     TextView tv_course_name;
     public Button b_done;
     public Button b_clear_scores;
+    public Button b_email;
     int header_row_width;
     scorekeeper_data msd;
     //    enum e_row {hole,par,hcp};
@@ -245,9 +246,14 @@ public class scoring_layout extends Activity {
 	b_done=new Button(context);
 	b_done.setText("Done");
 	b_done.setBackgroundColor(context.getResources().getColor(android.R.color.holo_green_light));
+	
 	b_clear_scores=new Button(context);
 	b_clear_scores.setText("Clear All Scores");
 	b_clear_scores.setBackgroundColor(context.getResources().getColor(android.R.color.holo_red_light));
+
+	b_email=new Button(context);
+	b_email.setText("Email Scores");
+	b_email.setBackgroundColor(context.getResources().getColor(android.R.color.holo_blue_bright));
 	//	b_done.setOnClickListener(new View.OnClickListener() {
 	//		
 	//		@Override
@@ -268,6 +274,7 @@ public class scoring_layout extends Activity {
 	    }
 	header_row[10].addView(b_done);
 	header_row[10].addView(b_clear_scores);
+	header_row[10].addView(b_email);
 	
 	layout.addView(header_row[10]);
 	my_sv.addView(layout);

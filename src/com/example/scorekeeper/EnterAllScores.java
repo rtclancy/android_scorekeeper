@@ -9,8 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.KeyEvent;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +22,10 @@ public class EnterAllScores extends Activity {
     EditText my_view;
     TextView my_tview;
     Button my_button;
+	Spinner my_spinner;
     CharSequence text_cs;
     int current_et = 0;
+    ArrayAdapter<CharSequence> adapter;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,22 @@ public class EnterAllScores extends Activity {
 
 	my_button=(Button)findViewById(R.id.aeas_b_current_hole);
 	my_button.setBackgroundColor(Color.rgb(0x00, 0xff, 0xff));
+	
+	adapter= new ArrayAdapter<CharSequence>(this,android.R.layout.simple_spinner_item);
+	for (int i=0;i<10;i++)
+	{
+		adapter.add(Msd_common_methods.possible_scores[i]);
+	}
+
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_0);
+	my_spinner.setAdapter(adapter);
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_1);
+	my_spinner.setAdapter(adapter);
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_2);
+	my_spinner.setAdapter(adapter);
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_3);
+	my_spinner.setAdapter(adapter);
+
 
 	ui_update_scores();
 	//next_listeners();
@@ -129,22 +149,35 @@ public class EnterAllScores extends Activity {
   		Toast toast = Toast.makeText(context, "Save", Toast.LENGTH_SHORT);
 		toast.show();
 
-	my_view=(EditText)findViewById(R.id.aeas_et_0);
-	text_cs=my_view.getText();
-	msd.score[0][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+//	my_view=(EditText)findViewById(R.id.aeas_et_0);
+//	text_cs=my_view.getText();
+//	msd.score[0][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+		my_spinner=(Spinner)findViewById(R.id.aeas_sp_0);
+		text_cs=my_spinner.getSelectedItem().toString();
+		msd.score[0][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+	
 
-	my_view=(EditText)findViewById(R.id.aeas_et_1);
-	text_cs=my_view.getText();
-	msd.score[1][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+//	my_view=(EditText)findViewById(R.id.aeas_et_1);
+//	text_cs=my_view.getText();
+//	msd.score[1][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+		my_spinner=(Spinner)findViewById(R.id.aeas_sp_1);
+		text_cs=my_spinner.getSelectedItem().toString();
+		msd.score[1][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
 		
-	my_view=(EditText)findViewById(R.id.aeas_et_2);
-	text_cs=my_view.getText();
-	msd.score[2][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+//	my_view=(EditText)findViewById(R.id.aeas_et_2);
+//	text_cs=my_view.getText();
+//	msd.score[2][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+		my_spinner=(Spinner)findViewById(R.id.aeas_sp_1);
+		text_cs=my_spinner.getSelectedItem().toString();
+		msd.score[1][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
 		
-	my_view=(EditText)findViewById(R.id.aeas_et_3);
-	text_cs=my_view.getText();
-	msd.score[3][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
-    }
+//	my_view=(EditText)findViewById(R.id.aeas_et_3);
+//	text_cs=my_view.getText();
+//	msd.score[3][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+		my_spinner=(Spinner)findViewById(R.id.aeas_sp_1);
+		text_cs=my_spinner.getSelectedItem().toString();
+		msd.score[1][msd.current_hole]=Msd_common_methods.catch_parseInt(text_cs.toString());
+   }
 
     public void ui_void_scores(View view)
     {
@@ -154,169 +187,45 @@ public class EnterAllScores extends Activity {
 	ui_update_scores();
     }
 
-    private void next_listeners()
-    {
-//	my_tview=(TextView)findViewById(R.id.editText0);
-//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-//	    {
-//		public boolean onKey(View v, int Keycode, KeyEvent event)
-//		{
-//		    nextView(Keycode);
-//		    return Boolean.TRUE;
-//		}
-//	    });
-//	my_tview=(TextView)findViewById(R.id.editText1);
-//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-//	    {
-//		public boolean onKey(View v, int Keycode, KeyEvent event)
-//		{
-//		    nextView(Keycode);
-//		    return Boolean.TRUE;
-//		}
-//	    });
-//	my_tview=(TextView)findViewById(R.id.editText2);
-//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-//	    {
-//		public boolean onKey(View v, int Keycode, KeyEvent event)
-//		{
-//		    nextView(Keycode);
-//		    return Boolean.TRUE;
-//		}
-//	    });
-//	my_tview=(TextView)findViewById(R.id.editText3);
-//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-//	    {
-//		public boolean onKey(View v, int Keycode, KeyEvent event)
-//		{
-//		    nextView(Keycode);
-//		    return Boolean.TRUE;
-//		}
-//	    });
-//	//	my_tview=(TextView)findViewById(R.id.editText1);
-	//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-	//	{
-	//		public boolean onKey(View v, int Keycode, KeyEvent event)
-	//		{
-	//	my_view.setText(Integer.toString(15));
-	//		return Boolean.TRUE;
-	//		}
-	//	});
-	//	my_tview=(TextView)findViewById(R.id.editText2);
-	//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-	//	{
-	//		public boolean onKey(View v, int Keycode, KeyEvent event)
-	//		{
-	//		my_view.setText(Integer.toString(15));
-	//		return Boolean.TRUE;
-	//		}
-	//	});
-	//	my_tview=(TextView)findViewById(R.id.editText3);
-	//	my_tview.setOnKeyListener(new View.OnKeyListener() 
-	//	{
-	//		public boolean onKey(View v, int Keycode, KeyEvent event)
-	//		{
-	// 		my_view.setText(Integer.toString(15));
-	//		return Boolean.TRUE;
-	//		}
-	//	});
-	//
-    }
-
-
     public void ui_update_scores()
     {
-    	my_tview=(TextView)findViewById(R.id.fixedText1);
-    	my_tview.setText(msd.players[1]);
-    	my_view=(EditText)findViewById(R.id.aeas_et_1);
-    	my_view.setText(Integer.toString(msd.score[1][msd.current_hole]));
-    	my_view.setSelectAllOnFocus(Boolean.TRUE);
-    	my_view.requestFocus(); //need to focus here then again back on first edittext to get select all to work
-    	
-
     	my_tview=(TextView)findViewById(R.id.fixedText0);
 	my_tview.setText(msd.players[0]);
-	my_view=(EditText)findViewById(R.id.aeas_et_0);
-	my_view.setText(Integer.toString(msd.score[0][msd.current_hole]));
-	my_view.setSelectAllOnFocus(Boolean.TRUE);
-	my_view.requestFocus();
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_0);
+	my_spinner.setSelection(msd.score[0][msd.current_hole]);
+//	my_view=(EditText)findViewById(R.id.aeas_et_0);
+//	my_view.setText(Integer.toString(msd.score[0][msd.current_hole]));
+//	my_view.setSelectAllOnFocus(Boolean.TRUE);
+//	my_view.requestFocus();
+	
+
+	my_tview=(TextView)findViewById(R.id.fixedText1);
+    	my_tview.setText(msd.players[1]);
+    	my_spinner=(Spinner)findViewById(R.id.aeas_sp_1);
+    	my_spinner.setSelection(msd.score[1][msd.current_hole]);
+    ///    	my_view=(EditText)findViewById(R.id.aeas_et_1);
+//    	my_view.setText(Integer.toString(msd.score[1][msd.current_hole]));
+//    	my_view.setSelectAllOnFocus(Boolean.TRUE);
+//    	my_view.requestFocus(); //need to focus here then again back on first edittext to get select all to work
+    	
+
 
 										  
 	my_tview=(TextView)findViewById(R.id.fixedText2);
 	my_tview.setText(msd.players[2]);
-	my_view=(EditText)findViewById(R.id.aeas_et_2);			  
-	my_view.setText(Integer.toString(msd.score[2][msd.current_hole]));
-	my_view.setSelectAllOnFocus(Boolean.TRUE);
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_2);
+	my_spinner.setSelection(msd.score[2][msd.current_hole]);
+///	my_view=(EditText)findViewById(R.id.aeas_et_2);			  
+//	my_view.setText(Integer.toString(msd.score[2][msd.current_hole]));
+//	my_view.setSelectAllOnFocus(Boolean.TRUE);
 										  
 	my_tview=(TextView)findViewById(R.id.fixedText3);
 	my_tview.setText(msd.players[3]);
-	my_view=(EditText)findViewById(R.id.aeas_et_3);			  
-	my_view.setText(Integer.toString(msd.score[3][msd.current_hole]));
-	my_view.setSelectAllOnFocus(Boolean.TRUE);
+	my_spinner=(Spinner)findViewById(R.id.aeas_sp_3);
+	my_spinner.setSelection(msd.score[3][msd.current_hole]);
+///	my_view=(EditText)findViewById(R.id.aeas_et_3);			  
+//	my_view.setText(Integer.toString(msd.score[3][msd.current_hole]));
+//	my_view.setSelectAllOnFocus(Boolean.TRUE);
     }
-
-   public void selectAll_et0(View view)
-    {
-    	EditText my_et;
-    	my_et=(EditText)findViewById(R.id.aeas_et_0);
-    	my_et.selectAll();
-    }
-    public void selectAll_et1(View view)
-    {
-    	EditText my_et;
-    	my_et=(EditText)findViewById(R.id.aeas_et_1);
-    	my_et.selectAll();
-    }
-    public void selectAll_et2(View view)
-    {
-    	EditText my_et;
-    	my_et=(EditText)findViewById(R.id.aeas_et_2);
-    	my_et.selectAll();
-    }
-    public void selectAll_et3(View view)
-    {
-    	EditText my_et;
-    	my_et=(EditText)findViewById(R.id.aeas_et_3);
-    	my_et.selectAll();
-    }
-
-    private void nextView(int Keycode)
-    {		    //		    my_view.setText(Integer.toString(Keycode));
-	//	my_tview=(TextView)findViewById(R.id.editText1);
-	//	my_tview.setText(Integer.toString(Keycode));
-//	if (Keycode == KeyEvent.KEYCODE_ENTER)
-//	    {
-//		switch (current_et)
-//		    {
-//		    case 0:
-//			{
-//			    current_et++;
-//			    my_tview=(TextView)findViewById(R.id.editText1);
-//			    my_tview.requestFocus();
-//			    break;
-//			}
-//		    case 1:
-//			{
-//			    current_et++;
-//			    my_tview=(TextView)findViewById(R.id.editText2);
-//			    my_tview.requestFocus();
-//			    break;
-//			}
-//		    case 2:
-//			{
-//			    current_et++;
-//			    my_tview=(TextView)findViewById(R.id.editText3);
-//			    my_tview.requestFocus();
-//			    break;
-//			}
-//		    case 3:
-//			{
-//			    current_et=0;
-//			    my_tview=(TextView)findViewById(R.id.editText0);
-//			    my_tview.requestFocus();
-//			    break;
-//			}
-//		    }
-//	    }
-   }
    }
 

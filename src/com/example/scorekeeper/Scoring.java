@@ -57,6 +57,21 @@ public class Scoring extends Activity {
 			
 			}
 		    });
+		scoring_layout.b_email.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			    // TODO Auto-generated method stub
+			    Intent email = new Intent(Intent.ACTION_SEND);
+			    email.putExtra(Intent.EXTRA_SUBJECT, "Golf Scores");
+			    email.putExtra(Intent.EXTRA_TEXT, my_scorekeeper_data.print_scorecard_txt());                
+			    email.setType("message/rfc822");
+			    startActivity(Intent.createChooser(email,
+			                "Choose an Email client :"));
+
+			}
+		    });
+
 	}
 
 	@Override

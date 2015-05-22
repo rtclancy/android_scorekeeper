@@ -52,6 +52,14 @@
             android:text="Load"
             android:textColor="@android:color/white" />
 
+        <Button
+            android:id="@+id/asc_b_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="Delete"
+            android:text="Delete"
+            android:textColor="@android:color/white" />
+
        <Button
             android:id="@+id/asc_b_done"
             android:layout_width="wrap_content"
@@ -59,18 +67,6 @@
             android:onClick="Done"
             android:text="Done"
             android:textColor="@android:color/white" />
-
-       <EditText
-           android:id="@+id/asc_confirm_code"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:background="@android:color/white"
-           android:ems="10"
-           android:inputType="number" >
-
-           <requestFocus />
-       </EditText>
 
     </LinearLayout>
 

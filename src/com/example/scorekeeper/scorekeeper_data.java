@@ -1,6 +1,7 @@
 package com.example.scorekeeper;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class scorekeeper_data implements Serializable  {
     public String[] players = new String[4];
@@ -155,6 +156,157 @@ public class scorekeeper_data implements Serializable  {
 	gir=remove2dIntArrayFromByteArray(gir);
 	course=remove2dIntArrayFromByteArray(course);
 	distance_in=remove2dIntArrayFromByteArray(distance_in);
+    }
+    
+    public String print_scorecard_txt()
+    {
+    	String scorecard_txt=null;
+		int out=0,in=0;
+		Date todays_date = new Date();
+		final String line_seperator = new String(new char[123]).replace("\0", "-");
+		final String line_seperator2 = new String(new char[123]).replace("\0", "+");
+    	
+		scorecard_txt= line_seperator + "\n";
+		scorecard_txt = scorecard_txt + this.current_course + "\n";
+		scorecard_txt = scorecard_txt + todays_date.toString() + "\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+    	////////
+    	//header line, players holes, etc
+    	////////////
+    	scorecard_txt= scorecard_txt + String.format("%-12s", "Hole");
+    	scorecard_txt= scorecard_txt + String.format("%1s", ":");
+    	
+    	for (int i=1;i<10;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",i);
+    	}
+		scorecard_txt=scorecard_txt + "  OUT |";
+		for (int i=10;i<19;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",i);
+    	}
+		scorecard_txt=scorecard_txt + "  IN |";
+		scorecard_txt=scorecard_txt + "  TOT |\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+		/////////////////////////////////
+		// Blue Distance Per Hole
+		/////////////////////////////////
+    	scorecard_txt= scorecard_txt + String.format("%-12s", "Blue");
+    	scorecard_txt= scorecard_txt + String.format("%1s", ":");
+    	for (int i=0;i<9;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_BLUE][i]);
+    	}
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out(COURSE_BLUE));
+		for (int i=9;i<18;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_BLUE][i]);
+    	}
+		scorecard_txt=scorecard_txt + String.format("%4d |",this.course_totals_in(COURSE_BLUE));
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out_in(COURSE_BLUE)) +"\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+				
+		/////////////////////////////////
+		// White Distance Per Hole
+		/////////////////////////////////
+    	scorecard_txt= scorecard_txt + String.format("%-12s", "White");
+    	scorecard_txt= scorecard_txt + String.format("%1s", ":");
+    	for (int i=0;i<9;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_WHITE][i]);
+    	}
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out(COURSE_WHITE));
+		for (int i=9;i<18;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_WHITE][i]);
+    	}
+		scorecard_txt=scorecard_txt + String.format("%4d |",this.course_totals_in(COURSE_WHITE));
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out_in(COURSE_WHITE)) +"\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+
+		/////////////////////////////////
+		// RED Distance Per Hole
+		/////////////////////////////////
+    	scorecard_txt= scorecard_txt + String.format("%-12s", "Red");
+    	scorecard_txt= scorecard_txt + String.format("%1s", ":");
+    	for (int i=0;i<9;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_RED][i]);
+    	}
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out(COURSE_RED));
+		for (int i=9;i<18;i++)
+    	{
+    		scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_RED][i]);
+    	}
+		scorecard_txt=scorecard_txt + String.format("%4d |",this.course_totals_in(COURSE_RED));
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out_in(COURSE_RED)) +"\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+
+		/////////////////////////////////
+		// PAR Per Hole
+		/////////////////////////////////
+		scorecard_txt= scorecard_txt + String.format("%-12s", "PAR");
+		scorecard_txt= scorecard_txt + String.format("%1s", ":");
+		for (int i=0;i<9;i++)
+		{
+			scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_PAR][i]);
+		}
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out(COURSE_PAR));
+		for (int i=9;i<18;i++)
+		{
+			scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_PAR][i]);
+		}
+		scorecard_txt=scorecard_txt + String.format("%4d |",this.course_totals_in(COURSE_PAR));
+		scorecard_txt=scorecard_txt + String.format("%5d |",this.course_totals_out_in(COURSE_PAR)) +"\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+
+		/////////////////////////////////
+		// HCP Per Hole
+		/////////////////////////////////
+		scorecard_txt= scorecard_txt + String.format("%-12s", "HCP");
+		scorecard_txt= scorecard_txt + String.format("%1s", ":");
+		for (int i=0;i<9;i++)
+		{
+
+			scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_HCP][i]);
+			
+		}
+		scorecard_txt=scorecard_txt + String.format("%5s |"," ");
+		for (int i=9;i<18;i++)
+		{
+			scorecard_txt=scorecard_txt + String.format("%3d |",this.course[COURSE_HCP][i]);
+		}
+		scorecard_txt=scorecard_txt + String.format("%4s |"," ");
+		scorecard_txt=scorecard_txt + String.format("%5s |\n"," ");
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+		scorecard_txt=scorecard_txt + line_seperator2 + "\n";
+		scorecard_txt=scorecard_txt + line_seperator + "\n";
+
+		/////////////////////////////////
+		//player scores
+		/////////////////////////////////
+		out=0;in=0;
+		for (int j=0;j<4;j++)
+		{
+			scorecard_txt=scorecard_txt+String.format("%-12s",this.players[j]);
+			scorecard_txt= scorecard_txt + String.format("%1s", ":");
+			for (int i=0;i<9;i++)
+			{
+				scorecard_txt=scorecard_txt + String.format("%3d |",this.score[j][i]);
+				out+=this.score[j][i];
+			}
+			scorecard_txt=scorecard_txt + String.format("%5s |",out);
+			for (int i=9;i<18;i++)
+			{
+				scorecard_txt=scorecard_txt + String.format("%3d |",this.score[j][i]);
+				in+=this.score[j][i];
+			}
+			scorecard_txt=scorecard_txt + String.format("%4d |",in);
+			scorecard_txt=scorecard_txt + String.format("%5d |\n",out+in);
+			scorecard_txt=scorecard_txt + line_seperator + "\n";
+		}
+		
+    	return scorecard_txt;
     }
 
      public boolean Equals(scorekeeper_data compare_obj)
